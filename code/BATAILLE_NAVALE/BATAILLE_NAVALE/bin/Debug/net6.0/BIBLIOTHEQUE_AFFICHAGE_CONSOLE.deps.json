@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "BIBLIOTHEQUE_AFFICHAGE_CONSOLE/1.0.0": {
+        "dependencies": {
+          "BIBLIOTHEQUE_INTERACTIONS_API": "1.0.0",
+          "BIBLIOTHEQUE_LOGIQUE_JEU": "1.0.0"
+        },
+        "runtime": {
+          "BIBLIOTHEQUE_AFFICHAGE_CONSOLE.dll": {}
+        }
+      },
+      "BIBLIOTHEQUE_INTERACTIONS_API/1.0.0": {
+        "runtime": {
+          "BIBLIOTHEQUE_INTERACTIONS_API.dll": {}
+        }
+      },
+      "BIBLIOTHEQUE_LOGIQUE_JEU/1.0.0": {
+        "runtime": {
+          "BIBLIOTHEQUE_LOGIQUE_JEU.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BIBLIOTHEQUE_AFFICHAGE_CONSOLE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BIBLIOTHEQUE_INTERACTIONS_API/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BIBLIOTHEQUE_LOGIQUE_JEU/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

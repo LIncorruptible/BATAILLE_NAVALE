@@ -1,11 +1,46 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "BIBLIOTHEQUE_INTERACTIONS_API/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BIBLIOTHEQUE_INTERACTIONS_API.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BIBLIOTHEQUE_INTERACTIONS_API.dll": {}
+        }
+      },
+      "BIBLIOTHEQUE_LOGIQUE_JEU/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BIBLIOTHEQUE_LOGIQUE_JEU.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BIBLIOTHEQUE_LOGIQUE_JEU.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "BIBLIOTHEQUE_INTERACTIONS_API/1.0.0": {
+      "type": "project",
+      "path": "../Interactions/BIBLIOTHEQUE_INTERACTIONS_API.csproj",
+      "msbuildProject": "../Interactions/BIBLIOTHEQUE_INTERACTIONS_API.csproj"
+    },
+    "BIBLIOTHEQUE_LOGIQUE_JEU/1.0.0": {
+      "type": "project",
+      "path": "../GameLibrary/BIBLIOTHEQUE_LOGIQUE_JEU.csproj",
+      "msbuildProject": "../GameLibrary/BIBLIOTHEQUE_LOGIQUE_JEU.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "BIBLIOTHEQUE_INTERACTIONS_API >= 1.0.0",
+      "BIBLIOTHEQUE_LOGIQUE_JEU >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\maelr\\.nuget\\packages\\": {}
@@ -33,7 +68,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\GameLibrary\\BIBLIOTHEQUE_LOGIQUE_JEU.csproj": {
+              "projectPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\GameLibrary\\BIBLIOTHEQUE_LOGIQUE_JEU.csproj"
+            },
+            "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj": {
+              "projectPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,0 +1,12 @@
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\bin\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.deps.json
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\bin\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.dll
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\bin\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.pdb
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.csproj.AssemblyReference.cache
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.AssemblyInfoInputs.cache
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.AssemblyInfo.cs
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.csproj.CoreCompileInputs.cache
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.dll
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\refint\BIBLIOTHEQUE_LOGIQUE_JEU.dll
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\BIBLIOTHEQUE_LOGIQUE_JEU.pdb
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\GameLibrary\obj\Debug\net6.0\ref\BIBLIOTHEQUE_LOGIQUE_JEU.dll

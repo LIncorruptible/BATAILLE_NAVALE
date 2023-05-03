@@ -1,0 +1,12 @@
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\bin\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.deps.json
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\bin\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.dll
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\bin\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.pdb
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.csproj.AssemblyReference.cache
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.AssemblyInfoInputs.cache
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.AssemblyInfo.cs
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.csproj.CoreCompileInputs.cache
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.dll
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\refint\BIBLIOTHEQUE_INTERACTIONS_API.dll
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\BIBLIOTHEQUE_INTERACTIONS_API.pdb
+C:\Users\maelr\Mes_Trucs\Licence_LPRGI\C#\BATAILLE_NAVALE\code\BATAILLE_NAVALE\Interactions\obj\Debug\net6.0\ref\BIBLIOTHEQUE_INTERACTIONS_API.dll
