@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\BATAILLE_NAVALE\\BIBLIOTHEQUE_AFFICHAGE_CONSOLE.csproj",
-      "projectName": "BIBLIOTHEQUE_AFFICHAGE_CONSOLE",
-      "projectPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\BATAILLE_NAVALE\\BIBLIOTHEQUE_AFFICHAGE_CONSOLE.csproj",
+      "projectUniqueName": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\GameLibrary\\BIBLIOTHEQUE_LOGIQUE_JEU.csproj",
+      "projectName": "BIBLIOTHEQUE_LOGIQUE_JEU",
+      "projectPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\GameLibrary\\BIBLIOTHEQUE_LOGIQUE_JEU.csproj",
       "packagesPath": "C:\\Users\\maelr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\BATAILLE_NAVALE\\obj\\",
+      "outputPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\GameLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maelr\\AppData\\Roaming\\NuGet\\NuGet.Config",
