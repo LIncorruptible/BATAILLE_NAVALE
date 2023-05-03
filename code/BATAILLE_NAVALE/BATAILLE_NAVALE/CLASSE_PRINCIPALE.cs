@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using BIBLIOTHEQUE_INTERACTIONS_API;
+using BIBLIOTHEQUE_LOGIQUE_JEU;
 
 
 namespace BIBLIOTHEQUE_AFFICHAGE_CONSOLE
@@ -24,7 +25,6 @@ namespace BIBLIOTHEQUE_AFFICHAGE_CONSOLE
             // Afficher les données du JsonArray
             Console.WriteLine("Affichage des données du JsonArray");
             Console.WriteLine(json);
-
         }
     }
 }

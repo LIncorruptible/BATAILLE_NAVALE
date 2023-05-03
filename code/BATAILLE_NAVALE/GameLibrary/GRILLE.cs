@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BIBLIOTHEQUE_LOGIQUE_JEU
 {
-    internal class GRILLE
+    public class GRILLE
     {
         private int _HAUTEUR, _LARGEUR, _TAILLE;
 

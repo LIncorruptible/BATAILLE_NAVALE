@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BIBLIOTHEQUE_LOGIQUE_JEU
 {
-    internal class PIECE_DE_JEU
+    public class PIECE_DE_JEU
     {
         private int _ID;
         private BATEAU _BATEAU;

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Y1i1dQVsMPpNyOpuTxG1mlxrrxnhgvJxqcyY2NfQe+4VfV1GJIvm2AK915aAo1Ymmxp+G//+rsVPHmZBYGVjlw==",
+  "dgSpecHash": "nW7ylTkphjIcAVpczlSPkQfHUl59zNJmxNbHYZmhKMYv6lLGQjyOkveH0lsZqD7gKFW8igpgsjy2rfGJ0E4VDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\GameLibrary\\BIBLIOTHEQUE_LOGIQUE_JEU.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\maelr\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

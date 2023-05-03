@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BIBLIOTHEQUE_LOGIQUE_JEU
 {
-    internal class BATEAU
+    public class BATEAU
     {
         private int _TAILLE;
         private string _NOM;
