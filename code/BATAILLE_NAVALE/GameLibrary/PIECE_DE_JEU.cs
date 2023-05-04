@@ -11,12 +11,14 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
         private int _ID;
         private BATEAU _BATEAU;
         private List<POINT> _VECTEUR;
+        private bool _EST_COULE;
 
         public PIECE_DE_JEU()
         {
             this._ID = 0;
             this._BATEAU = new BATEAU();
             this._VECTEUR = new List<POINT>();
+            this._EST_COULE = false;
         }
 
         public PIECE_DE_JEU(int id, BATEAU bateau, List<POINT> vecteur)
@@ -24,6 +26,7 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             this._ID = id;
             this._BATEAU = bateau;
             this._VECTEUR = vecteur;
+            this._EST_COULE = false;
         }
 
         public int ID
@@ -42,6 +45,12 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
         {
             get { return this._VECTEUR; }
             set { this._VECTEUR = value; }
+        }
+
+        public bool EST_COULE
+        {
+            get { return this._EST_COULE; }
+            set { this._EST_COULE = value; }
         }
     }
 }

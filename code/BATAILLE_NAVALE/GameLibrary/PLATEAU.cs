@@ -115,5 +115,22 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
 
             return new int[2] { nbLignes, nbColonnes };
         }
+
+        public bool validationCoordonnees(int[] coords)
+        {
+            // Les coordonnées sont-elles dans la grille ?
+            if (coords[0] < 0 || coords[0] >= _GRILLE_JOUEUR_A.HAUTEUR || coords[1] < 0 || coords[1] >= _GRILLE_JOUEUR_A.LARGEUR)
+            {
+                return false;
+            }
+
+            // Les coordonnées sont-elles déjà utilisées ?
+            if (_GRILLE_ENEMI_DE_A[coords[0], coords[1]] != -1)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

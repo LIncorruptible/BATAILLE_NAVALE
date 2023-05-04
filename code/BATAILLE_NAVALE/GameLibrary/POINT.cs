@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BIBLIOTHEQUE_LOGIQUE_JEU
 {
-    internal class POINT
+    public class POINT
     {
         private int _X, _Y;
         private bool _TOUCHE;
