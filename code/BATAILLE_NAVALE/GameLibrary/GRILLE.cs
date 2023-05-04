@@ -15,6 +15,46 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
         private int[,] _POSITONS_IDS;
         private List<PIECE_DE_JEU> _PIECES_DE_JEU;
 
+        public GRILLE(int hauteur, int largeur, List<BATEAU> bateaux)
+        {
+            _HAUTEUR= hauteur;
+            _LARGEUR= largeur;
+            _TAILLE= hauteur * largeur;
+
+            // Initialisation des disponibilités
+            _DISPONIBILITES= new bool[hauteur, largeur];
+
+            for (int i = 0; i < _DISPONIBILITES.GetLength(0); i++)
+            {
+                for (int j = 0; j < _DISPONIBILITES.GetLength(1); j++)
+                {
+                    _DISPONIBILITES[i, j] = false;
+                }
+            }
+
+             // Initialisation des positions
+             _POSITONS_IDS= new int[hauteur, largeur];
+
+            for (int i = 0; i < _POSITONS_IDS.GetLength(0); i++)
+            {
+                for (int j = 0; j < _POSITONS_IDS.GetLength(1); j++)
+                {
+                    _POSITONS_IDS[i, j] = -1;
+                }
+            }
+
+            // Initialisation des pièces de jeu
+            _PIECES_DE_JEU= new List<PIECE_DE_JEU>();
+
+            // Création des pièces de jeu
+            int id = 1;
+            foreach(BATEAU bateau in bateaux)
+            {
+                _PIECES_DE_JEU.Add(new PIECE_DE_JEU(id, bateau, new List<POINT>()));
+                id++;
+            }
+        }
+
         public GRILLE(int hauteur, int largeur, int taille, bool[,] disponibilites, int[,] positions_ids, List<PIECE_DE_JEU> pieces_de_jeu)
         {
             _HAUTEUR= hauteur;

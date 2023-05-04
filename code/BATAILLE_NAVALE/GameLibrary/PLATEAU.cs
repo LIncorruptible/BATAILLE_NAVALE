@@ -31,6 +31,33 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
 
         public PLATEAU(PLATEAU P) : this(P.GRILLE_JOUEUR_A, P.GRILLE_JOUEUR_B, P.GRILLE_ENEMI_DE_A, P.GRILLE_ENEMI_DE_B, P.WIN) { }
 
+        public PLATEAU(string json)
+        {
+            // Récupération des données
+            int[] taille = recupererTailleGrille(json);
+            List<BATEAU> bateaux= recupererListeBateaux(json);
+
+            // GRILLE joueur A & B
+
+            _GRILLE_JOUEUR_A = new GRILLE(taille[0], taille[1], bateaux);
+            _GRILLE_JOUEUR_B = new GRILLE(_GRILLE_JOUEUR_A);
+
+            // GRILLE enemi de A & B
+            int[,] grille = new int[taille[0], taille[1]];
+            for (int i = 0; i < grille.GetLength(0); i++)
+            {
+                for (int j = 0; j < grille.GetLength(1); j++)
+                {
+                    grille[i, j] = -1;
+                }
+            }
+
+            _GRILLE_ENEMI_DE_A = grille;
+            _GRILLE_ENEMI_DE_B = grille;
+
+            _WIN = false;
+        }
+
         // Getters & Setters
 
         public GRILLE GRILLE_JOUEUR_A
@@ -80,13 +107,13 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             return listeBateaux;
         }
 
-        public static int[,] recupererTailleGrille(string json)
+        public static int[] recupererTailleGrille(string json)
         {
             JObject jsonObject = JObject.Parse(json);
             int nbLignes = (int)jsonObject["nbLignes"];
             int nbColonnes = (int)jsonObject["nbColonnes"];
 
-            return new int[nbLignes, nbColonnes];
+            return new int[2] { nbLignes, nbColonnes };
         }
     }
 }
