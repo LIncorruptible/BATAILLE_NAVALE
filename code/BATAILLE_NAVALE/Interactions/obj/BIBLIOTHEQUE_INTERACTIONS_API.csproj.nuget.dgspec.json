@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj": {}
+    "C:\\Users\\mulot\\OneDrive - etud.u-picardie.fr\\IUT\\LP_RGI\\C#\\projet_git\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj": {
+    "C:\\Users\\mulot\\OneDrive - etud.u-picardie.fr\\IUT\\LP_RGI\\C#\\projet_git\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj",
+        "projectUniqueName": "C:\\Users\\mulot\\OneDrive - etud.u-picardie.fr\\IUT\\LP_RGI\\C#\\projet_git\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj",
         "projectName": "BIBLIOTHEQUE_INTERACTIONS_API",
-        "projectPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj",
-        "packagesPath": "C:\\Users\\maelr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maelr\\Mes_Trucs\\Licence_LPRGI\\C#\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\obj\\",
+        "projectPath": "C:\\Users\\mulot\\OneDrive - etud.u-picardie.fr\\IUT\\LP_RGI\\C#\\projet_git\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\BIBLIOTHEQUE_INTERACTIONS_API.csproj",
+        "packagesPath": "C:\\Users\\mulot\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mulot\\OneDrive - etud.u-picardie.fr\\IUT\\LP_RGI\\C#\\projet_git\\BATAILLE_NAVALE\\code\\BATAILLE_NAVALE\\Interactions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\maelr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mulot\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

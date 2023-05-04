@@ -15,6 +15,7 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
         {
             _TAILLE = 0;
             _NOM = "EAU";
+
         }
 
         public BATEAU(int taille, string nom)
