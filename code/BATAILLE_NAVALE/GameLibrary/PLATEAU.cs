@@ -132,5 +132,80 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
 
             return true;
         }
+
+        public bool estCoulee(PIECE_DE_JEU piece_de_jeu)
+        {
+            foreach(POINT point in piece_de_jeu.VECTEUR) 
+            {
+                if(point.TOUCHE = false) return false; 
+            }
+
+            return true;
+        }
+        
+        public bool etatPieceDeJeu(POINT point, PIECE_DE_JEU piece_de_jeu)
+        {
+            if (point.TOUCHE)
+            {
+                return false;
+            } 
+            else
+            {
+                // On met le point à TOUCHE dans la pièce de jeu
+                piece_de_jeu.VECTEUR.Find(p => p.X == point.X && p.Y == point.Y).TOUCHE = true;
+
+                return (estCoulee(piece_de_jeu)) ? true : false;
+            }
+        }
+
+        public bool jouerLeTour(int joueur_id, int[] coords)
+        {
+            bool valide = validationCoordonnees(coords);
+
+            if(valide)
+            {
+                int piece_id;
+
+                switch (joueur_id)
+                {
+                    case 1:
+                        piece_id = _GRILLE_JOUEUR_B.POSITONS_IDS[coords[0], coords[1]];
+                        break;
+                    case 2:
+                        piece_id = _GRILLE_JOUEUR_A.POSITONS_IDS[coords[0], coords[1]];
+                        break;
+                    default:
+                        piece_id = -1;
+                        break;
+                }
+
+                if (piece_id > 0)
+                {
+                    // On récupère le POINT de la pièce correspondant aux coordonnées
+                    POINT point = new POINT();
+
+                    switch (joueur_id)
+                    {
+                        case 1:
+                            point = _GRILLE_JOUEUR_B.PIECES_DE_JEU[piece_id].VECTEUR.Find(p => p.X == coords[0] && p.Y == coords[1]);
+                            break;
+                        case 2:
+                            point = _GRILLE_JOUEUR_A.PIECES_DE_JEU[piece_id].VECTEUR.Find(p => p.X == coords[0] && p.Y == coords[1]);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    // On met à jour l'état de la pièce de jeu et on retourne le résultat
+                    bool etat = etatPieceDeJeu(point, _GRILLE_JOUEUR_A.PIECES_DE_JEU[piece_id]);
+
+                    return etat;
+                }
+
+                return false;
+            }
+
+            return valide;
+        }
     }
 }
