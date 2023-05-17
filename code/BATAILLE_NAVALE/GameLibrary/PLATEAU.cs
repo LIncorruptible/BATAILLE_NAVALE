@@ -92,7 +92,7 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
 
         // Méthodes
 
-        public static List<BATEAU> recupererListeBateaux(string json)
+        public List<BATEAU> recupererListeBateaux(string json)
         {
             JObject jsonObject = JObject.Parse(json);
             JArray bateauxArray = (JArray)jsonObject["bateaux"];
@@ -107,7 +107,7 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             return listeBateaux;
         }
 
-        public static int[] recupererTailleGrille(string json)
+        public int[] recupererTailleGrille(string json)
         {
             JObject jsonObject = JObject.Parse(json);
             int nbLignes = (int)jsonObject["nbLignes"];
@@ -116,96 +116,135 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             return new int[2] { nbLignes, nbColonnes };
         }
 
-        public bool validationCoordonnees(int[] coords)
+        // Méthodes décrites dans le pseudo code
+
+        public bool coordonneesDansLaGrille(int[] coords, int id_joueur)
         {
+            bool valide = false;
+
+            GRILLE grille = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
+
             // Les coordonnées sont-elles dans la grille ?
-            if (coords[0] < 0 || coords[0] >= _GRILLE_JOUEUR_A.HAUTEUR || coords[1] < 0 || coords[1] >= _GRILLE_JOUEUR_A.LARGEUR)
+            // Pour x
+            if (coords[0] >= 0 && coords[0] < grille.LARGEUR)
             {
-                return false;
-            }
-
-            // Les coordonnées sont-elles déjà utilisées ?
-            if (_GRILLE_ENEMI_DE_A[coords[0], coords[1]] != -1)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool estCoulee(PIECE_DE_JEU piece_de_jeu)
-        {
-            foreach(POINT point in piece_de_jeu.VECTEUR) 
-            {
-                if(point.TOUCHE = false) return false; 
-            }
-
-            return true;
-        }
-        
-        public bool etatPieceDeJeu(POINT point, PIECE_DE_JEU piece_de_jeu)
-        {
-            if (point.TOUCHE)
-            {
-                return false;
-            } 
-            else
-            {
-                // On met le point à TOUCHE dans la pièce de jeu
-                piece_de_jeu.VECTEUR.Find(p => p.X == point.X && p.Y == point.Y).TOUCHE = true;
-
-                return (estCoulee(piece_de_jeu)) ? true : false;
-            }
-        }
-
-        public bool jouerLeTour(int joueur_id, int[] coords)
-        {
-            bool valide = validationCoordonnees(coords);
-
-            if(valide)
-            {
-                int piece_id;
-
-                switch (joueur_id)
+                // Pour y
+                if (coords[1] >= 0 && coords[1] < grille.HAUTEUR)
                 {
-                    case 1:
-                        piece_id = _GRILLE_JOUEUR_B.POSITONS_IDS[coords[0], coords[1]];
-                        break;
-                    case 2:
-                        piece_id = _GRILLE_JOUEUR_A.POSITONS_IDS[coords[0], coords[1]];
-                        break;
-                    default:
-                        piece_id = -1;
-                        break;
+                    valide = true;
                 }
-
-                if (piece_id > 0)
-                {
-                    // On récupère le POINT de la pièce correspondant aux coordonnées
-                    POINT point = new POINT();
-
-                    switch (joueur_id)
-                    {
-                        case 1:
-                            point = _GRILLE_JOUEUR_B.PIECES_DE_JEU[piece_id].VECTEUR.Find(p => p.X == coords[0] && p.Y == coords[1]);
-                            break;
-                        case 2:
-                            point = _GRILLE_JOUEUR_A.PIECES_DE_JEU[piece_id].VECTEUR.Find(p => p.X == coords[0] && p.Y == coords[1]);
-                            break;
-                        default:
-                            break;
-                    }
-
-                    // On met à jour l'état de la pièce de jeu et on retourne le résultat
-                    bool etat = etatPieceDeJeu(point, _GRILLE_JOUEUR_A.PIECES_DE_JEU[piece_id]);
-
-                    return etat;
-                }
-
-                return false;
             }
 
             return valide;
+        }
+
+        public bool coordonneesSontLibres(int[] coords, int id_joueur)
+        {
+            bool libre = false;
+
+            GRILLE grille = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
+
+            // Les coordonnées sont-elles libres ?
+            if (grille.POSITONS_IDS[coords[0], coords[1]] == 0)
+            {
+                libre = true;
+            }
+
+            return libre;
+        }
+
+        public bool coordonneesDejaTouchees(int[] coords, int id_joueur, int id_piece_de_jeu)
+        {
+            bool dejaTouche = false;
+
+            GRILLE grille = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
+
+            // Les coordonnées ont-elles déjà touchées une pièce ?
+            foreach(PIECE_DE_JEU piece in grille.PIECES_DE_JEU) {
+                if(piece.ID == id_piece_de_jeu)
+                {
+                    foreach(POINT point in piece.VECTEUR)
+                    {
+                        if(point.X == coords[0] && point.Y == coords[1])
+                        {
+                            dejaTouche = true;
+                        }
+                    }
+                }
+            }
+
+            return dejaTouche;
+        }
+
+        public void toucherPieceAuxCoordonnees(int[] coords, int id_joueur, int id_piece_de_jeu)
+        {
+            GRILLE grille = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
+            
+            // On touche la pièce aux coordonnées
+            foreach (PIECE_DE_JEU piece in grille.PIECES_DE_JEU)
+            {
+                if (piece.ID == id_piece_de_jeu)
+                {
+                    foreach (POINT point in piece.VECTEUR)
+                    {
+                        if (point.X == coords[0] && point.Y == coords[1])
+                        {
+                            point.TOUCHE = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        public int[,] traduireGrille()
+        {
+
+        }
+
+        public List<int[,]> traiterReponse(int[] reponse_affichage)
+        {
+            // Réponse reçu dans reponse affichage : id_init | x | y | id_joueur | id_piece_de_jeu
+            // Réponse à envoyer dans reponse logique : grille_a | grille_b | valid
+
+            List<int[,]> reponse_logique = new List<int[,]>();
+            int[,] partieGagne = new int[1, 1] { { 0 } };
+
+            // Retraduction de la réponse
+            int 
+                id_init = reponse_affichage[0], // 0 si c'est l'initialisation de départ
+                id_joueur = reponse_affichage[3], // 1 si c'est le joueur A, 2 si c'est le joueur B
+                id_piece_de_jeu = reponse_affichage[4]; // numéro de la pièce de jeu concernée
+
+            int[]
+                coords = new int[2] { reponse_affichage[1], reponse_affichage[2] };
+
+            if(reponse_affichage.Length < 1) // Si c'est l'initialisation de départ
+            {
+                
+            }
+            else // Sinon, c'est une réponse à l'affichage
+            {
+                if (id_init == 0) // Si la réponse est 0, c'est la partie positions des pièces du jeu
+                {
+
+                }
+                else // Sinon, c'est la partie de jeu
+                {
+                    id_joueur = (id_joueur == 1) ? 2 : 1; // On inverse le joueur
+
+                    if (coordonneesDansLaGrille(coords, id_joueur) == true)
+                    {
+                        if (coordonneesDejaTouchees(coords, id_joueur, id_piece_de_jeu) == false)
+                        {
+                            toucherPieceAuxCoordonnees(coords, id_joueur, id_piece_de_jeu);
+
+                            reponse_logique.Add(traduireGrille());
+                        }
+                    }
+                }
+            }
+
+            return reponse_logique;
         }
     }
 }
