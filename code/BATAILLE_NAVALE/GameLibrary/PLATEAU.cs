@@ -117,7 +117,7 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             return new int[2] { nbLignes, nbColonnes };
         }
 
-        // Méthodes décrites dans le pseudo code
+        // Méthodes décrites dans le pseudo code : LOGIQUE
 
         public bool coordonneesDansLaGrille(int[] coords, int id_joueur)
         {
