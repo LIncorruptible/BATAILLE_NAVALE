@@ -32,7 +32,7 @@ POSITIONNEMENT PIECES DE JEU
         
 	AFFICHAGE : POSITIONNEMENT
 
-	ENVOIE PAR AFFICHAGE : (envoi list de int[] : 5 éléments)
+	ENVOIE PAR AFFICHAGE : (envoi list de int[] : 6 éléments)
             - INIT => int : 0 init 1 jeu
 		- COORDS => int[] MAIS NULL
 		- ID_JOUEUR => int : 1 ou 2

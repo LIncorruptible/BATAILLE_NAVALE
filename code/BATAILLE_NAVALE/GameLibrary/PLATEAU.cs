@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -176,6 +177,92 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             return dejaTouche;
         }
 
+        public bool pieceDejaPlacee(int id_joueur, int id_piece_de_jeu)
+        {
+            GRILLE G = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
+
+            // La pièce a-t-elle déjà été placée ?
+            bool placee = false;
+
+            foreach (PIECE_DE_JEU piece in G.PIECES_DE_JEU)
+            {
+                if (piece.ID == id_piece_de_jeu)
+                {
+                    foreach(POINT point in piece.VECTEUR)
+                    {
+                        if(point.X != -1 && point.Y != -1)
+                        {
+                            placee = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            return placee;
+        }
+
+        public bool emplacementLibrePourPlacer(int[] coords, int id_joueur, int id_piece_de_jeu, int id_orientation)
+        {
+            GRILLE G = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
+
+            int taille = 0;
+            // On récupère la taille de la pièce
+            foreach (PIECE_DE_JEU piece in G.PIECES_DE_JEU)
+            {
+                if (piece.ID == id_piece_de_jeu)
+                {
+                    taille = piece.BATEAU.TAILLE;
+                    break;
+                }
+            }
+            
+            List<POINT> vecteur = new List<POINT>();
+            switch (id_orientation)
+            {
+                case 0: // Vertical
+                    for (int i = 0; i < taille; i++)
+                    {
+                        vecteur.Add(new POINT(coords[0], coords[1] + i));
+                    }
+                    break;
+                default: // Horizontal
+                    for (int i = 0; i < taille; i++)
+                    {
+                        vecteur.Add(new POINT(coords[0] + i, coords[1]));
+                    }
+                    break;
+            }
+
+            bool libre = true;
+
+            // On vérifie que les coordonnées sont dans la grille
+            foreach (POINT point in vecteur)
+            {
+                if (!coordonneesDansLaGrille(new int[2] { point.X, point.Y }, id_joueur))
+                {
+                    libre = false;
+                    break;
+                }
+            }
+
+            // On vérifie que les coordonnées sont libres, qu'il n'y a pas de pièce déjà placée dessus
+            if (libre) // "Libre" d'après la vérification précédente
+            {
+                foreach (POINT point in vecteur)
+                {
+                    if (!coordonneesSontLibres(new int[2] { point.X, point.Y }, id_joueur))
+                    {
+                        libre = false;
+                        break;
+                    }
+                }
+            }
+
+            return libre;
+        }
+
         public void toucherPieceAuxCoordonnees(int[] coords, int id_joueur, int id_piece_de_jeu)
         {
             GRILLE grille = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
@@ -196,49 +283,160 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             }
         }
 
-        public int[,] traduireGrille()
+        public void placerPieceAuxCoordonnees(int[] coords, int id_joueur, int id_piece_de_jeu, int id_orientation)
         {
+            GRILLE grille = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
+            
+            int taille = 0;
+            // On récupère la taille de la pièce
+            foreach (PIECE_DE_JEU piece in grille.PIECES_DE_JEU)
+            {
+                if (piece.ID == id_piece_de_jeu)
+                {
+                    taille = piece.BATEAU.TAILLE;
+                    break;
+                }
+            }
+            List<POINT> vecteur = new List<POINT>();
+            switch (id_orientation)
+            {
+                case 0: // Vertical
+                    for (int i = 0; i < taille; i++)
+                    {
+                        vecteur.Add(new POINT(coords[0], coords[1] + i)); // Vertical vers le haut
+                    }
+                    break;
+                default: // Horizontal
+                    for (int i = 0; i < taille; i++)
+                    {
+                        vecteur.Add(new POINT(coords[0] + i, coords[1])); // Horizontal vers la droite
+                    }
+                    break;
+            }
+            // On place la pièce aux coordonnées
+            foreach (PIECE_DE_JEU piece in grille.PIECES_DE_JEU)
+            {
+                if (piece.ID == id_piece_de_jeu)
+                {
+                    piece.VECTEUR = vecteur;
+                }
+            }
+        }
 
+        public int[,] traduireGrille(int id_joueur)
+        {
+            GRILLE G = (id_joueur == 1) ? _GRILLE_JOUEUR_B : _GRILLE_JOUEUR_A;
+            int[,] grille = G.POSITONS_IDS;
+
+            // Pour chaque case de la grille si la pièce orrespondante est touchée on fait fois -1 
+            for (int i = 0; i < G.LARGEUR; i++)
+            {
+                for (int j = 0; j < G.HAUTEUR; j++)
+                {
+                    if (grille[i, j] != 0)
+                    {
+                        foreach (PIECE_DE_JEU piece in G.PIECES_DE_JEU)
+                        {
+                            if (piece.ID == grille[i, j])
+                            {
+                                foreach (POINT point in piece.VECTEUR)
+                                {
+                                    if (point.X == i && point.Y == j)
+                                    {
+                                        if (point.TOUCHE)
+                                        {
+                                            grille[i, j] *= -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return grille;
+        }
+
+        public bool partieEstGagnee(int id_joueur)
+        {
+            bool gagne = true;
+            GRILLE grille = (id_joueur == 1) ? _GRILLE_JOUEUR_B : _GRILLE_JOUEUR_A;
+            // On vérifie si toutes les pièces sont touchées
+            foreach (PIECE_DE_JEU piece in grille.PIECES_DE_JEU)
+            {
+                foreach (POINT point in piece.VECTEUR)
+                {
+                    if (point.TOUCHE == false)
+                    {
+                        gagne = false;
+                    }
+                }
+            }
+            return gagne;
         }
 
         public List<int[,]> traiterReponse(int[] reponse_affichage)
         {
-            // Réponse reçu dans reponse affichage : id_init | x | y | id_joueur | id_piece_de_jeu
-            // Réponse à envoyer dans reponse logique : grille_a | grille_b | valid
+            // Réponse reçu dans reponse affichage : id_init | x | y | id_joueur | id_piece_de_jeu | id_orientation
+            // Réponse à envoyer dans reponse logique : grille | partieGagnee matrice de 1 ou 0 
 
             List<int[,]> reponse_logique = new List<int[,]>();
-            int[,] partieGagne = new int[1, 1] { { 0 } };
+            int[,] partieGagnee = new int[1, 1] { { 0 } };
 
-            // Retraduction de la réponse
-            int 
-                id_init = reponse_affichage[0], // 0 si c'est l'initialisation de départ
-                id_joueur = reponse_affichage[3], // 1 si c'est le joueur A, 2 si c'est le joueur B
-                id_piece_de_jeu = reponse_affichage[4]; // numéro de la pièce de jeu concernée
+            // Retraduction de la réponse affichage
+            int id_init, x, y, id_joueur, id_piece_de_jeu, id_orientation;
 
-            int[]
-                coords = new int[2] { reponse_affichage[1], reponse_affichage[2] };
+            id_init = reponse_affichage[0];
 
-            if(reponse_affichage.Length < 1) // Si c'est l'initialisation de départ
+            x = (reponse_affichage.Length > 1) ? reponse_affichage[2] : -1;
+            y = (reponse_affichage.Length > 2) ? reponse_affichage[3] : -1;
+            id_joueur = (reponse_affichage.Length > 3) ? reponse_affichage[4] : -1;
+            id_piece_de_jeu = (reponse_affichage.Length > 4) ? reponse_affichage[5] : -1;
+            id_orientation = (reponse_affichage.Length > 5) ? reponse_affichage[6] : -1;
+
+
+            if(id_init != 0) // Partie jeu
             {
-                
-            }
-            else // Sinon, c'est une réponse à l'affichage
-            {
-                if (id_init == 0) // Si la réponse est 0, c'est la partie positions des pièces du jeu
-                {
+                // On inverse id_joueur pour avoir le joueur adverse (1 -> 2 et 2 -> 1) : Le joueur 1 joue sur la grille du joueur 2
+                id_joueur = (id_joueur == 1) ? 2 : 1;
 
-                }
-                else // Sinon, c'est la partie de jeu
+                if (coordonneesDansLaGrille(new int[2] {x, y}, id_joueur) == true)
                 {
-                    id_joueur = (id_joueur == 1) ? 2 : 1; // On inverse le joueur
-
-                    if (coordonneesDansLaGrille(coords, id_joueur) == true)
+                    if (coordonneesDejaTouchees(new int[2] {x, y}, id_joueur, id_piece_de_jeu) == true)
                     {
-                        if (coordonneesDejaTouchees(coords, id_joueur, id_piece_de_jeu) == false)
-                        {
-                            toucherPieceAuxCoordonnees(coords, id_joueur, id_piece_de_jeu);
+                        toucherPieceAuxCoordonnees(new int[2] { x, y }, id_joueur, id_piece_de_jeu);
+                        reponse_logique.Add(traduireGrille(id_joueur));
 
-                            reponse_logique.Add(traduireGrille());
+                        if (partieEstGagnee(id_joueur))
+                        {
+                            partieGagnee[0, 0] = 1;
+                            reponse_logique.Add(partieGagnee); // Partie gagnée
+                        }
+                        else
+                        {
+                            partieGagnee[0, 0] = 0;
+                            reponse_logique.Add(partieGagnee); // Partie non gagnée
+                        }
+                    }
+                }
+            }
+            else // Partie positionnement des pièces de jeu
+            {
+                if(id_joueur == -1) // On initialise la grille commune aux deux joueurs
+                {
+                    reponse_logique.Add(traduireGrille(1)); // Grille du joueur 1 : les 2 grilles étant initialement identiques
+                    reponse_logique.Add(new int[1,1] { { 0 } }); // Partie non gagnée
+                }  
+                else // On place la pièce de jeu
+                {
+                    if (pieceDejaPlacee(id_joueur, id_piece_de_jeu) == false)
+                    {
+                        if (emplacementLibrePourPlacer(new int[2] { x, y }, id_joueur, id_piece_de_jeu, id_orientation))
+                        {
+                            placerPieceAuxCoordonnees(new int[2] { x, y }, id_joueur, id_piece_de_jeu, id_orientation);
+                            reponse_logique.Add(traduireGrille(id_joueur));
+                            reponse_logique.Add(new int[1, 1] { { 0 } }); // Partie non gagnée
                         }
                     }
                 }

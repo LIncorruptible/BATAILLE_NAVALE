@@ -18,7 +18,7 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             _TOUCHE = touche;
         }
 
-        public POINT() : this(0, 0, false) { }
+        public POINT() : this(-1, -1, false) { }
 
         public POINT(int x, int y) : this(x, y, false) { }
 
