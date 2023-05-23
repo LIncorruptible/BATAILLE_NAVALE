@@ -15,18 +15,28 @@ namespace BIBLIOTHEQUE_AFFICHAGE_CONSOLE
 
         static void Main(string[] args)
         {
-            // Récupération des données de l'API
-            string url = "https://api-lprgi.natono.biz/api/GetConfig";
-            string key = "lprgi_api_key_2023";
-            API api = new API(url, key);
-            string json = api.RecupererData().Result;
+            //// Récupération des données de l'API
+            //string url = "https://api-lprgi.natono.biz/api/GetConfig";
+            //string key = "lprgi_api_key_2023";
+            
+            //API api = new API(url, key);
+            //string json = api.RecupererData().Result;
 
-            // Afficher les données du JsonArray
-            Console.WriteLine("Affichage des données du JsonArray");
-            Console.WriteLine(json);
+            //// Afficher les données du JsonArray
+            //Console.WriteLine("Affichage des données du JsonArray");
+            //Console.WriteLine(json);
 
-            // Création du PLATEAU
-            PLATEAU plateau = new PLATEAU(json);
+            // Arrange
+            int[,] plateau = new int[,]
+            {
+                { 0, 0, 1, 1 },
+                { 2, -2, 0, 0 },
+                { 0, 0, -3, -3 },
+                { 4, 4, 4, 0 }
+            };
+
+            // Act 
+            DISPLAY.AfficherPlateau(plateau);
         }
     }
 }
