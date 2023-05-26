@@ -38,7 +38,7 @@ namespace BIBLIOTHEQUE_INTERACTIONS_API
 
         public async Task<string> RecupererData()
         {
-            Console.WriteLine("Récupération des données de l'API en cours...");
+            Console.Write("Récupération des données de l'API en cours...");
             string json = string.Empty;
             try
             {
@@ -48,12 +48,12 @@ namespace BIBLIOTHEQUE_INTERACTIONS_API
                     json = wc.DownloadString(_URL);
                 }
 
-                Console.WriteLine("Données récupérées avec succès.");
+                Console.Write("[Terminé]\n");
                 return json;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erreur lors de la récupération des données : " + ex.Message);
+                Console.Write("Erreur lors de la récupération des données : " + ex.Message + "\n");
                 return null;
             }
         }

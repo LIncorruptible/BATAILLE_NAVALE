@@ -39,7 +39,7 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             {
                 for (int j = 0; j < _POSITONS_IDS.GetLength(1); j++)
                 {
-                    _POSITONS_IDS[i, j] = -1;
+                    _POSITONS_IDS[i, j] = 0;
                 }
             }
 
