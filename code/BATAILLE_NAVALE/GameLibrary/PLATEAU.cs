@@ -281,7 +281,20 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
                             point.TOUCHE = true;
                         }
                     }
+
+                    // On met à jour la pièce dans la grille
+                    grille.PIECES_DE_JEU[i] = piece;
                 }
+            }
+
+            // Mise à jour de la grille
+            if (id_joueur == 1)
+            {
+                _GRILLE_JOUEUR_A = new GRILLE(grille);
+            }
+            else
+            {
+                _GRILLE_JOUEUR_B = new GRILLE(grille);
             }
         }
 
@@ -362,38 +375,45 @@ namespace BIBLIOTHEQUE_LOGIQUE_JEU
             GRILLE G = (id_joueur == 1) ? _GRILLE_JOUEUR_A : _GRILLE_JOUEUR_B;
             int[,] grille = G.POSITONS_IDS;
 
-            // Pour chaque case de la grille si la pièce correspondante est touchée on fait fois -1, on met de l'eau pour dissimuler le reste
+            // Parcourir chaque case de la grille
             for (int i = 0; i < G.LARGEUR; i++)
             {
                 for (int j = 0; j < G.HAUTEUR; j++)
                 {
-                    if (grille[i, j] != 0)
+                    bool estTouche = false;
+
+                    // Vérifier si la case correspond à une pièce touchée
+                    foreach (PIECE_DE_JEU piece in G.PIECES_DE_JEU)
                     {
-                        foreach (PIECE_DE_JEU piece in G.PIECES_DE_JEU)
+                        if (piece.ID == grille[i, j])
                         {
-                            if (piece.ID == grille[i, j])
+                            foreach (POINT point in piece.VECTEUR)
                             {
-                                foreach (POINT point in piece.VECTEUR)
+                                if (point.X == i && point.Y == j && point.TOUCHE)
                                 {
-                                    if (point.X == i && point.Y == j)
-                                    {
-                                        if (point.TOUCHE)
-                                        {
-                                            grille[i, j] *= -1;
-                                        } else
-                                        {
-                                            grille[i, j] = 0;
-                                        }
-                                    }
+                                    estTouche = true;
+                                    break;
                                 }
                             }
+                            break;
                         }
+                    }
+
+                    // Affecter les valeurs en fonction de l'état de la case
+                    if (estTouche)
+                    {
+                        grille[i, j] = -1;
+                    }
+                    else
+                    {
+                        grille[i, j] = 0;
                     }
                 }
             }
 
             return grille;
         }
+
 
 
         public int[,] traduireGrille(int id_joueur)

@@ -141,8 +141,8 @@ namespace BIBLIOTHEQUE_AFFICHAGE_CONSOLE
                 orientation = 1;
 
             char[] choix = { 'o', 'O' };
-
-            if (init)
+             
+            if (init == true)
             {
                 // Saisie de la pièce
                 int nb_total_pieces = liste_pieces.GetLength(0);

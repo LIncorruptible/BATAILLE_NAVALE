@@ -57,32 +57,60 @@ namespace BIBLIOTHEQUE_AFFICHAGE_CONSOLE
             }
         }
 
-        public static bool afficherTourJeu(int joueurEnCours, int[,] grille_joueur, List<int[,]> reponse_logique, PLATEAU plateau)
+        public static void afficherTourJeu(int joueurEnCours, PLATEAU plateau)
         {
             bool partieGagnee = false;
+
+            List<int[,]> reponse_logique = plateau.traiterReponse(new int[] { 1, -1, -1, -1, -1 });
+
+            int[,]
+                grilleAdverse_1 = (int[,])reponse_logique[0].Clone(),
+                grilleAdverse_2 = (int[,])reponse_logique[0].Clone();
 
             Console.Clear();
             DISPLAY.AffichageTitre("Tour du joueur " + joueurEnCours);
 
-            DISPLAY.AfficherPlateau(grille_joueur);
+            DISPLAY.AfficherPlateau((joueurEnCours == 1) ? grilleAdverse_2 : grilleAdverse_1);
 
-            int[] reponse_affichage = DISPLAY.reponseAffichage(false, joueurEnCours, reponse_logique);
 
-            reponse_logique = plateau.traiterReponse(reponse_affichage);
-
-            grille_joueur = reponse_logique[0];
-            
-            // Si reponse_logique[1] ne contient que des 1 alors le joueur a gagné
-            if (CONTROLE.piecesToutesCoulees(reponse_logique[1]))
+            do
             {
-                Console.WriteLine("Le joueur " + joueurEnCours + " a gagné !");
-                partieGagnee = true;
-            }
+                int[,] grille_joueur = (joueurEnCours == 1) ? grilleAdverse_2 : grilleAdverse_1;
 
-            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-            Console.ReadKey();
+                int[] reponse_affichage = DISPLAY.reponseAffichage(false, joueurEnCours, reponse_logique);
 
-            return partieGagnee;
+                reponse_logique = plateau.traiterReponse(reponse_affichage);
+
+                grille_joueur = reponse_logique[0];
+
+                // Si reponse_logique[1] ne contient que des 1 alors le joueur a gagné
+                if (CONTROLE.piecesToutesCoulees(reponse_logique[1]))
+                {
+                    Console.WriteLine("Le joueur " + joueurEnCours + " a gagné !");
+                    partieGagnee = true;
+                    break;
+                }
+
+                Console.Clear();
+                DISPLAY.AffichageTitre("Tour du joueur " + joueurEnCours);
+
+                DISPLAY.AfficherPlateau(grille_joueur);
+
+                Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                Console.ReadKey();
+
+                if (joueurEnCours == 1)
+                {
+                    grilleAdverse_2 = (int[,])grille_joueur.Clone();
+                }
+                else
+                {
+                    grilleAdverse_1 = (int[,])grille_joueur.Clone();
+                }
+
+                joueurEnCours = DISPLAY.ChangementDeJoueur(joueurEnCours);
+
+            } while (partieGagnee == false);
         }
 
         static void Main(string[] args)
@@ -179,40 +207,7 @@ namespace BIBLIOTHEQUE_AFFICHAGE_CONSOLE
             Console.WriteLine("\nAppuyez sur une touche pour continuer...");
             Console.ReadKey();
 
-            bool PartieGagnee = false;
-
-            int[,] 
-                grilleAdverse_1 = (int[,])plateau.traiterReponse(new int[] { 1, -1, -1, -1, -1 })[0].Clone(),
-                grilleAdverse_2 = (int[,])plateau.traiterReponse(new int[] { 1, -1, -1, -1, -1 })[0].Clone();
-
-            Console.ReadKey();
-
-            while (PartieGagnee == false)
-            {
-                // Joueur 1 sur le joueur 2 et inversement
-                if (afficherTourJeu(joueurEnCours, (joueurEnCours == 1) ? grilleAdverse_2 : grilleAdverse_1, reponse_logique, plateau) == true)
-                {
-                    PartieGagnee = true;
-                }
-
-                Console.Clear();
-                DISPLAY.AffichageTitre("Tour du joueur " + joueurEnCours);
-
-                DISPLAY.AfficherGrille(grilleAdverse_1);
-                Console.WriteLine();
-                DISPLAY.AfficherGrille(grilleAdverse_2);
-
-                Console.ReadKey();
-
-                DISPLAY.AfficherPlateau((joueurEnCours == 1) ? grilleAdverse_2 : grilleAdverse_1);
-
-                // Attente de la saisie d'une touche pour lancer la partie
-                Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-                Console.ReadKey();
-
-                joueurEnCours = DISPLAY.ChangementDeJoueur(joueurEnCours);
-
-            }
+            afficherTourJeu(joueurEnCours, plateau);
         }
     }
 }
