@@ -1,0 +1,75 @@
+INITIALISATION
+
+    RECUPERATION DE L'API POUR TOUS LE MONDE
+
+    ENVOI PAR LOGIQUE : (envoi list de int[,] : 3 éléments = GRILLE A & B + matrice de 1 ou 0)
+	- _GRILLE_ENEMI_DE_A, _GRILLE_ENEMI_DE_B => int[,]
+	- _WIN => BOOL
+
+	AFFICHAGE : INIT
+
+	ENVOIE PAR AFFICHAGE : (envoi int[] : 3 éléments = x; y; id)
+		- INIT => int : 0 init 1 jeu
+		- COORDS => int[] MAIS NULL
+		- ID_JOUEUR => int : 1 ou 2
+
+	LOGIQUE : VALIDATION
+
+	SI PAS BON :
+		ENVOI PAR LOGIQUE NULL
+	SINON
+		LOGIQUE : UPDATE
+		ENVOI PAR LOGIQUE
+			- _GRILLE_ENEMI_DE_A, _GRILLE_ENEMI_DE_B => int[,]
+			- _WIN => BOOL
+FIN
+
+POSITIONNEMENT PIECES DE JEU
+
+	ENVOI PAR LOGIQUE : (envoi list de int[,] : 3 éléments = GRILLE A & B + matrice de 1 ou 0)
+		- _GRILLE_ENEMI_DE_A, _GRILLE_ENEMI_DE_B => int[,]
+		- _WIN => BOOL
+        
+	AFFICHAGE : POSITIONNEMENT
+
+	ENVOIE PAR AFFICHAGE : (envoi list de int[] : 6 éléments)
+            - INIT => int : 0 init 1 jeu
+		- COORDS => int[] MAIS NULL
+		- ID_JOUEUR => int : 1 ou 2
+            - ID_PIECE_DE_JEU => int
+            - ID_SENS => 0 Vertical 1 Horizontal
+	
+	LOGIQUE : VALIDATION
+
+	SI PAS BON :
+		ENVOI PAR LOGIQUE NULL
+	SINON
+		LOGIQUE : UPDATE
+		ENVOI PAR LOGIQUE
+			- _GRILLE_ENEMI_DE_A, _GRILLE_ENEMI_DE_B => int[,]
+			- _WIN => BOOL
+FIN
+
+BOUCLE TANTQUE PAS _WIN
+	ENVOI PAR LOGIQUE :
+		- _GRILLE_ENEMI_DE_A, _GRILLE_ENEMI_DE_B => int[,]
+		- _WIN => BOOL
+
+	AFFICHAGE : IHM
+
+	ENVOIE PAR AFFICHAGE :
+      - INIT => int : 0 init 1 jeu
+	- COORDS => int[]
+	- ID_JOUEUR => int : 1 ou 2
+
+	LOGIQUE : VALIDATION
+
+	SI PAS BON :
+		ENVOI PAR LOGIQUE NULL
+	SINON
+		LOGIQUE : UPDATE
+		ENVOI PAR LOGIQUE
+			- _GRILLE_ENEMI_DE_A, _GRILLE_ENEMI_DE_B => int[,]
+			- _WIN => BOOL
+			
+FIN	
